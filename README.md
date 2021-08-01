@@ -11,9 +11,10 @@
 но скрипт можно было запустить не в Docker-контейнере, в таком случае можно было использовать следующую конструкцию для загрузки без curl:
 
 КОД:
+
+
 	import requests
 	import io
-
 	url = "https://raw.githubusercontent.com/elastic/examples/master/Common%20Data%20Formats/nginx_logs/nginx_logs"
 	download = requests.get(url).content
 	with open(io.StringIO(download.decode('utf-8'))) as f:
