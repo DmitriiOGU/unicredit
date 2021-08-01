@@ -1,0 +1,25 @@
+version: '3'
+
+volumes:
+  oda_hw_docker:
+
+services:
+  database:
+    build: init_db
+    restart: always
+    network_mode: host
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: example
+
+  manage_db:
+    container_name: od_manage_db
+    build: manage_db/
+    command: python3 /manage_db/manage_db.py
+    network_mode: host
+    volumes:
+      - ./manage_db:/manage_db
+    depends_on:
+      - database
+
